@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rajeev Mishra - Cloud & DevOps Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Reset & CSS Variables */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    :root {
+      --primary: #0f172a;          /* Slate 900 */
+      --secondary: #1e3a8a;        /* Blue 900 */
+      --accent: #2563eb;           /* Bright Blue 600 */
+      --accent-gradient: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #0284c7 100%);
+      --text-dark: #1e293b;        /* Slate 800 */
+      --text-muted: #475569;       /* Slate 600 */
+      --text-light: #64748b;       /* Slate 500 */
+      --bg-sidebar: #f8fafc;       /* Slate 50 */
+      --border-color: #cbd5e1;     /* Slate 300 */
+      --tag-bg: #eff6ff;           /* Blue 50 */
+      --tag-border: #bfdbfe;       /* Blue 200 */
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      color: var(--text-dark);
+      background-color: #cbd5e1;
+      line-height: 1.35;
+      font-size: 11.5px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .resume-card {
+      max-width: 840px;
+      margin: 15px auto;
+      background: #ffffff;
+      border-radius: 6px;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .top-bar-accent {
+      height: 4px;
+      background: var(--accent-gradient);
+      width: 100%;
+    }
+
+    .resume-content {
+      padding: 22px 26px;
+    }
+
+    /* Header Styling */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid var(--border-color);
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .avatar-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 8px;
+      background: var(--accent-gradient);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -0.5px;
+      box-shadow: 0 3px 8px rgba(37, 99, 235, 0.25);
+      flex-shrink: 0;
+    }
+
+    .name {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+      font-size: 10.5px;
+      color: var(--text-muted);
+      justify-content: flex-end;
+      align-items: center;
+      max-width: 400px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .contact-item svg {
+      width: 12px;
+      height: 12px;
+      fill: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .contact-item a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Main Grid Layout */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 16px;
+    }
+
+    /* Sidebar (Left Column) */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sidebar-card {
+      background: var(--bg-sidebar);
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      padding: 10px 11px;
+    }
+
+    .sidebar-title {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1.5px solid var(--accent);
+      padding-bottom: 3px;
+      margin-bottom: 8px;
+    }
+
+    .sidebar-title svg {
+      width: 13px;
+      height: 13px;
+      fill: var(--accent);
+    }
+
+    .skill-group {
+      margin-bottom: 7px;
+    }
+
+    .skill-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-cat {
+      font-weight: 700;
+      font-size: 10.5px;
+      color: var(--secondary);
+      margin-bottom: 1px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .skill-cat::before {
+      content: "";
+      width: 4px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .skill-desc {
+      font-size: 10px;
+      color: var(--text-muted);
+      line-height: 1.3;
+      padding-left: 8px;
+    }
+
+    .edu-item, .cert-item {
+      margin-bottom: 6px;
+    }
+
+    .edu-item:last-child, .cert-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .edu-degree {
+      font-weight: 700;
+      font-size: 11px;
+      color: var(--text-dark);
+    }
+
+    .edu-school {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .edu-year {
+      font-size: 9.5px;
+      color: var(--text-light);
+      font-weight: 600;
+    }
+
+    /* Main Content (Right Column) */
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1.5px solid var(--border-color);
+      padding-bottom: 3px;
+      margin-bottom: 8px;
+    }
+
+    .section-title svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--accent);
+    }
+
+    .summary-box {
+      background: var(--bg-sidebar);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      padding: 8px 11px;
+    }
+
+    .summary-text {
+      font-size: 10.8px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Job Entry Timeline Styling */
+    .timeline {
+      position: relative;
+      padding-left: 10px;
+      border-left: 2px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .job-entry {
+      position: relative;
+    }
+
+    .job-entry::before {
+      content: "";
+      position: absolute;
+      left: -15px;
+      top: 3px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 1.5px solid #ffffff;
+      box-shadow: 0 0 0 1.5px var(--accent);
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1px;
+    }
+
+    .job-role {
+      font-size: 11.8px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .job-date {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      padding: 0px 6px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    .job-company {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--secondary);
+      margin-bottom: 3px;
+    }
+
+    .job-bullets {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .job-bullets li {
+      position: relative;
+      padding-left: 11px;
+      font-size: 10.3px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+      line-height: 1.32;
+    }
+
+    .job-bullets li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 9px;
+      top: 1px;
+    }
+
+    .tag {
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* Condensed Early Experience Card */
+    .early-exp-card {
+      background: var(--bg-sidebar);
+      border: 1px dashed var(--border-color);
+      border-radius: 4px;
+      padding: 6px 10px;
+      margin-top: 2px;
+    }
+
+    .early-exp-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .early-exp-desc {
+      font-size: 10px;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    /* Strict 1-Page PDF Print Rules */
+    @media print {
+      body {
+        background: #ffffff;
+        font-size: 10.2px;
+      }
+
+      .resume-card {
+        margin: 0;
+        box-shadow: none;
+        max-width: 100%;
+        width: 100%;
+        border-radius: 0;
+      }
+
+      .resume-content {
+        padding: 12px 18px;
+      }
+
+      header {
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+      }
+
+      .main-grid {
+        grid-template-columns: 215px 1fr;
+        gap: 14px;
+      }
+
+      .sidebar-card {
+        padding: 7px 9px;
+      }
+
+      .timeline {
+        gap: 7px;
+      }
+
+      .job-bullets li {
+        font-size: 10px;
+        line-height: 1.3;
+        margin-bottom: 1.5px;
+      }
+
+      @page {
+        margin: 5mm 6mm;
+        size: A4 portrait;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="resume-card">
+    <div class="top-bar-accent"></div>
+    
+    <div class="resume-content">
+      <!-- HEADER -->
+      <header>
+        <div class="header-left">
+          <div class="avatar-badge">RM</div>
+          <div>
+            <h1 class="name">RAJEEV MISHRA</h1>
+            <div class="title">Cloud Infrastructure Engineer (Azure & AWS | K8s | Terraform)</div>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Navi Mumbai, India
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            +91-8355956846
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.89 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <a href="mailto:princealexster@gmail.com">princealexster@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.75a1.45 1.45 0 1 0 0 2.9 1.45 1.45 0 0 0 0-2.9z"/></svg>
+            <a href="https://www.linkedin.com/in/rajeev-mishra-84781818/" target="_blank">LinkedIn</a>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+            <a href="https://github.com/rajrules21" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </header>
+
+      <!-- MAIN TWO-COLUMN GRID -->
+      <div class="main-grid">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar">
+          
+          <!-- SKILLS GRID -->
+          <div class="sidebar-card">
+            <div class="sidebar-title">
+              <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.6C.4 7 1 10 3 12c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.4-.4.4-1.1 0-1.5z"/></svg>
+              SKILLS GRID
+            </div>
+            
+            <div class="skill-group">
+              <div class="skill-cat">Cloud & Governance</div>
+              <div class="skill-desc">Azure, AWS (EC2, S3, RDS, VPC, EKS), Azure Resource Graph, KQL, Logic Apps, Entra ID, FinOps</div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-cat">Containers & CI/CD</div>
+              <div class="skill-desc">Docker, Kubernetes (K8s/EKS), Git, GitHub, GitLab CI, Jenkins, CI/CD Pipelines</div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-cat">IaC & Automation</div>
+              <div class="skill-desc">Terraform, Ansible, Bash Scripting, PowerShell, Python, Runbooks</div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-cat">Observability & AIOps</div>
+              <div class="skill-desc">Elasticsearch, Logstash, Kibana, Azure Monitor (AI Anomaly Detection), Zabbix, Nagios</div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-cat">OS & Security</div>
+              <div class="skill-desc">Linux (RHEL, Ubuntu, CentOS), Windows Server, Sophos, FortiGate, SonicWALL</div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-cat">Reliability & DR</div>
+              <div class="skill-desc">Veeam Backup & Replication, Veritas Exec, DR Planning, HA Clustering</div>
+            </div>
+          </div>
+
+          <!-- EDUCATION -->
+          <div class="sidebar-card">
+            <div class="sidebar-title">
+              <svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+              EDUCATION
+            </div>
+            
+            <div class="edu-item">
+              <div class="edu-degree">M.Tech - CSE</div>
+              <div class="edu-school">Lovely Professional University</div>
+              <div class="edu-year">2011 – 2013</div>
+            </div>
+
+            <div class="edu-item">
+              <div class="edu-degree">B.E. - CSE</div>
+              <div class="edu-school">Sankalchand Patel College</div>
+              <div class="edu-year">2007 – 2011</div>
+            </div>
+          </div>
+
+          <!-- CERTIFICATIONS -->
+          <div class="sidebar-card">
+            <div class="sidebar-title">
+              <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+              CERTIFICATIONS
+            </div>
+            <div class="cert-item">
+              <div class="edu-degree">Certified IT Architect</div>
+              <div class="edu-school">CMS IT Institute</div>
+              <div class="edu-year">CCNA | MCSA | ITIL Training</div>
+            </div>
+          </div>
+
+          <!-- FEATURED PROJECTS -->
+          <div class="sidebar-card">
+            <div class="sidebar-title">
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.11 0-2 .89-2 2v14c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+              FEATURED PROJECTS
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-cat">Azure CIEM/CSPM Auditor</div>
+              <div class="skill-desc">Read-only Python Entra ID &amp; Azure RBAC/posture correlator. <a href="https://github.com/rajrules21/cloud-security-audit" target="_blank" style="color:var(--accent); font-weight:600;">GitHub</a></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-cat">Azure Cost &amp; FinOps Auditor</div>
+              <div class="skill-desc">AmortizedCost, 14-day CPU P95, Advisor &amp; orphaned resource auditor. <a href="https://github.com/rajrules21/cloud-cost-audit" target="_blank" style="color:var(--accent); font-weight:600;">GitHub</a></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-cat">AWS ECS &amp; Terraform CI/CD</div>
+              <div class="skill-desc">Modular IaC (VPC, ALB, ECR, ECS Fargate, CodePipeline). <a href="https://github.com/rajrules21/terraform-scripts-quiz-project" target="_blank" style="color:var(--accent); font-weight:600;">GitHub</a></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-cat">Jenkins DevSecOps Pipeline</div>
+              <div class="skill-desc">Trivy vulnerability gate, ECR &amp; Boto3 ECS deployment with CI tests. <a href="https://github.com/rajrules21/Jenkins-Projects" target="_blank" style="color:var(--accent); font-weight:600;">GitHub</a></div>
+            </div>
+          </div>
+
+        </aside>
+
+        <!-- RIGHT MAIN CONTENT -->
+        <main class="content">
+
+          <!-- SUMMARY -->
+          <section>
+            <div class="section-title">
+              <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+              PROFESSIONAL SUMMARY
+            </div>
+            <div class="summary-box">
+              <p class="summary-text">
+                Results-driven <strong>Cloud Infrastructure & DevOps Engineer</strong> with <strong>8+ years of hands-on experience</strong> architecting, automating, and securing multi-cloud environments (<strong>Azure & AWS</strong>). Proficient in Infrastructure as Code (<strong>Terraform</strong>), Container Orchestration (<strong>Docker, Kubernetes / AWS EKS</strong>), CI/CD pipelines (<strong>Jenkins, GitLab</strong>), and AI-driven observability (<strong>Azure Monitor & ELK</strong>) across production workloads.
+              </p>
+            </div>
+          </section>
+
+          <!-- EXPERIENCE TIMELINE -->
+          <section>
+            <div class="section-title">
+              <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+              PROFESSIONAL EXPERIENCE
+            </div>
+
+            <div class="timeline">
+              <!-- Marcus Evans -->
+              <div class="job-entry">
+                <div class="job-header">
+                  <span class="job-role">Cloud Infrastructure & DevOps Engineer</span>
+                  <span class="job-date">Apr 2024 – Present</span>
+                </div>
+                <div class="job-company">Marcus Evans Group | Mumbai, India</div>
+                <ul class="job-bullets">
+                  <li><span class="tag">AI Observability:</span> Configured AI-driven anomaly detection in Azure Monitor & Elasticsearch to proactively identify traffic spikes and system failures prior to end-user impact.</li>
+                  <li><span class="tag">Cloud Governance:</span> Automated unattached disk, idle Load Balancer, and snapshot remediation using KQL queries in Azure Resource Graph and Logic Apps, cutting cloud expenditure by ~22%.</li>
+                  <li><span class="tag">Infrastructure as Code:</span> Provisioned and updated Azure infrastructure (VNets, NSGs, Storage, VMs) using modular Terraform templates.</li>
+                  <li><span class="tag">Access & Security:</span> Enforced Entra ID RBAC policies, Conditional Access rules, and M365 security settings while maintaining 99.95%+ availability.</li>
+                </ul>
+              </div>
+
+              <!-- Futurescape -->
+              <div class="job-entry">
+                <div class="job-header">
+                  <span class="job-role">Linux Systems & AWS Administrator</span>
+                  <span class="job-date">Mar 2023 – Dec 2023</span>
+                </div>
+                <div class="job-company">Futurescape Technologies Pvt. Ltd. | Navi Mumbai, India</div>
+                <ul class="job-bullets">
+                  <li><span class="tag">AWS EKS & Containers:</span> Managed AWS cloud infrastructure (EC2, S3, RDS, VPC) and deployed containerized application workloads onto AWS Elastic Kubernetes Service (EKS).</li>
+                  <li><span class="tag">CI/CD Pipelines:</span> Maintained automated deployment workflows using Jenkins and GitLab CI pipelines for streamlined release management.</li>
+                  <li><span class="tag">Monitoring & Automation:</span> Configured Zabbix and Nagios alert thresholds to prevent outages; authored Python and Shell scripts for automated security patching.</li>
+                </ul>
+              </div>
+
+              <!-- Informist -->
+              <div class="job-entry">
+                <div class="job-header">
+                  <span class="job-role">Technology Associate (Cloud & Infrastructure)</span>
+                  <span class="job-date">Oct 2021 – Mar 2023</span>
+                </div>
+                <div class="job-company">Informist Data and Analytics Pvt. Ltd. | Mumbai, India</div>
+                <ul class="job-bullets">
+                  <li><span class="tag">Hybrid Cloud Operations:</span> Administered dual Linux/Windows server stacks, Hyper-V virtualization, and OS failover clusters.</li>
+                  <li><span class="tag">Network Security:</span> Enforced perimeter security, IPsec VPN tunnels, and threat policies using FortiGate Firewalls.</li>
+                  <li><span class="tag">Disaster Recovery:</span> Managed Veeam Backup & Replication and Veritas Backup Exec frameworks to meet strict RPO/RTO SLAs.</li>
+                </ul>
+              </div>
+
+              <!-- Meditab -->
+              <div class="job-entry">
+                <div class="job-header">
+                  <span class="job-role">Systems Engineer (Infrastructure & Automation)</span>
+                  <span class="job-date">Apr 2021 – Aug 2021</span>
+                </div>
+                <div class="job-company">Meditab Software Pvt. Ltd. | Ahmedabad, India</div>
+                <ul class="job-bullets">
+                  <li><span class="tag">Automation & IaC:</span> Developed Ansible playbooks and Terraform scripts for automated cloud provisioning on AWS and Nutanix virtual infrastructure.</li>
+                  <li><span class="tag">Patch Remediation:</span> Automated vulnerability management and patch remediation via Kaseya across 300+ endpoints and production servers.</li>
+                </ul>
+              </div>
+
+              <!-- Konverge -->
+              <div class="job-entry">
+                <div class="job-header">
+                  <span class="job-role">Systems Administrator</span>
+                  <span class="job-date">Jan 2018 – Dec 2019</span>
+                </div>
+                <div class="job-company">Konverge Technologies Ltd. (Client: Greaves Cotton) | Mumbai, India</div>
+                <ul class="job-bullets">
+                  <li><span class="tag">Identity Sync:</span> Administered Active Directory, DNS, DHCP, and hybrid cloud sync using Azure AD Connect / DirSync for M365 integration.</li>
+                  <li><span class="tag">Storage & Perimeter Security:</span> Configured HP 3PAR SAN storage arrays via CLI and enforced perimeter security using SonicWALL firewalls.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Condensed Pre-2018 Roles -->
+            <div class="early-exp-card">
+              <div class="early-exp-title">
+                <span>EARLY TECHNICAL EXPERIENCE (L2/L3 Systems & Technical Support)</span>
+                <span style="color: var(--accent);">Feb 2014 – Jul 2017</span>
+              </div>
+              <div class="early-exp-desc">
+                Held L2/L3 Customer Support & Systems Administration roles at <strong>CMS IT Services (KPIT Technologies site)</strong> and <strong>JNCT College</strong>. Managed desktop/server hardware provisioning, basic Cisco/HP network switch routing, OS patching, and system logging.
+              </div>
+            </div>
+
+          </section>
+
+        </main>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
